@@ -11,8 +11,8 @@ export default {
     Mutation: {
         createUser: (_, { data }) => User.create(data),
         updateUser: (_, { id, data }) => User.findOneAndUpdate(id, data, { new: true }),
-        deleteUser: (_, { id }) => {
-            const deleted = User.findOneAndDelete(id);
+        deleteUser: async (_, { id }) => {
+            const deleted = await User.findByIdAndDelete(id);
             return !!deleted;
         }
     }
